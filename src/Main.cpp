@@ -1,8 +1,8 @@
 #include <SDL.h>
 #include <assert.h>
 
-#include "Render.h"
-
+#include "Render/Render.h"
+#include "Cannon/Cannon.h"
 
 int main(int argc, char* args[])
 {
@@ -14,6 +14,9 @@ int main(int argc, char* args[])
 	assert(result == 0 && "SDL could not initialize!");
 
 	RenderInit();
+
+	Cannon* Player = new Cannon();
+
 
 	bool quit = false;
 	SDL_Event event;
@@ -28,10 +31,19 @@ int main(int argc, char* args[])
 			{
 				if (event.type == SDL_QUIT)
 					quit = true;
+				if (event.type == SDL_KEYDOWN && event.key.repeat == 0 && event.key.keysym.sym == SDLK_SPACE)
+					Player->Shoot();
 			}
 
+			DrawGround();
 			DrawFrog();
 			DrawMole();
+
+
+			Player->rotate(-30.0);
+			Player->Draw();
+
+			//Player->Shoot(10);
 
 			Render();
 

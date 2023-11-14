@@ -5,22 +5,45 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Source Files\Render">
+      <UniqueIdentifier>{39a35f57-814d-4fdd-a374-286b61b875fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Cannon">
+      <UniqueIdentifier>{c9a69b0c-1e71-4222-8ebb-1163a59b8ecd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Projectile">
+      <UniqueIdentifier>{53f7ff9f-0646-4403-8a38-eeace50694f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Render.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Render\Render.cpp">
+      <Filter>Source Files\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cannon\Cannon.cpp">
+      <Filter>Source Files\Cannon</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Projectile\Projectile.cpp">
+      <Filter>Source Files\Projectile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Render.h">
+    <ClInclude Include="src\Render\Render.h">
+      <Filter>Source Files\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Globals.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vec2.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cannon\Cannon.h">
+      <Filter>Source Files\Cannon</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Projectile\Projectile.h">
+      <Filter>Source Files\Projectile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
