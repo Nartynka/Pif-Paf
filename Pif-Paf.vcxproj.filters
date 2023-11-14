@@ -14,6 +14,9 @@
     <Filter Include="Source Files\Projectile">
       <UniqueIdentifier>{53f7ff9f-0646-4403-8a38-eeace50694f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameObject">
+      <UniqueIdentifier>{0b494982-f769-44bd-bdf7-a6cf8b59c021}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -27,6 +30,9 @@
     </ClCompile>
     <ClCompile Include="src\Projectile\Projectile.cpp">
       <Filter>Source Files\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\GameObject.cpp">
+      <Filter>Source Files\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +50,9 @@
     </ClInclude>
     <ClInclude Include="src\Projectile\Projectile.h">
       <Filter>Source Files\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\GameObject.h">
+      <Filter>Source Files\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,15 +1,15 @@
 #pragma once
-#include "..\Vec2.h"
+#include "../GameObject/GameObject.h"
 
-class Projectile
+class Projectile : public GameObject
 {
 public:
-	Projectile();
+	Projectile(Vec2 position, int radius, float speed, float gravity);
 	~Projectile();
-	void Draw();
+
+	void Draw() override;
 private:
-	Vec2 size;
-	Vec2 position;
 	float speed;
 	float gravity;
+	int radius;
 };

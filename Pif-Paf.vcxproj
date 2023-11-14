@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Cannon\Cannon.cpp" />
+    <ClCompile Include="src\GameObject\GameObject.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Projectile\Projectile.cpp" />
     <ClCompile Include="src\Render\Render.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Cannon\Cannon.h" />
+    <ClInclude Include="src\GameObject\GameObject.h" />
     <ClInclude Include="src\Globals.h" />
     <ClInclude Include="src\Projectile\Projectile.h" />
     <ClInclude Include="src\Render\Render.h" />
