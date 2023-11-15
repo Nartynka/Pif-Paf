@@ -21,7 +21,7 @@ void Cannon::Draw()
 
 void Cannon::Shoot()
 {
-	Bullets.push_back(new Projectile(position, 10, 10, 10));
+	//Bullets.push_back(new Projectile(position, 10, 10, 10));
 }
 
 void Cannon::rotate(double new_rotation)

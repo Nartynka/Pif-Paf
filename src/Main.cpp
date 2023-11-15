@@ -3,6 +3,7 @@
 
 #include "Render/Render.h"
 #include "Cannon/Cannon.h"
+#include "Projectile/Projectile.h"
 
 int main(int argc, char* args[])
 {
@@ -17,10 +18,13 @@ int main(int argc, char* args[])
 
 	Cannon* Player = new Cannon();
 
+	std::vector<Projectile*> Bullets;
 
 	bool quit = false;
 	SDL_Event event;
 	
+
+
 	while (!quit)
 	{
 		dt = (SDL_GetTicks() - lastTime) / 1000;
@@ -32,7 +36,7 @@ int main(int argc, char* args[])
 				if (event.type == SDL_QUIT)
 					quit = true;
 				if (event.type == SDL_KEYDOWN && event.key.repeat == 0 && event.key.keysym.sym == SDLK_SPACE)
-					Player->Shoot();
+					Bullets.push_back(new Projectile({200, 400}, 10, 100, 9.8, -10));
 			}
 
 			DrawGround();
@@ -43,6 +47,12 @@ int main(int argc, char* args[])
 			Player->rotate(-30.0);
 			Player->Draw();
 
+
+			for (Projectile* bullet : Bullets)
+			{
+				bullet->Move(dt);
+				bullet->Draw();
+			}
 			//Player->Shoot(10);
 
 			Render();
