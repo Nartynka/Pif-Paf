@@ -9,6 +9,8 @@ public:
 	Cannon();
 	~Cannon();
 	void Draw() override;
+	void DrawProjectiles();
+	void MoveProjectiles(float dt);
 	void Shoot();
 	void rotate(double new_rotation);
 

@@ -36,24 +36,19 @@ int main(int argc, char* args[])
 				if (event.type == SDL_QUIT)
 					quit = true;
 				if (event.type == SDL_KEYDOWN && event.key.repeat == 0 && event.key.keysym.sym == SDLK_SPACE)
-					Bullets.push_back(new Projectile({200, 400}, 10, 100, 9.8, -10));
+					Player->Shoot();
 			}
 
 			DrawGround();
 			DrawFrog();
 			DrawMole();
 
+			Player->MoveProjectiles(dt);
 
-			Player->rotate(-30.0);
+
+			Player->rotate(30.0);
 			Player->Draw();
-
-
-			for (Projectile* bullet : Bullets)
-			{
-				bullet->Move(dt);
-				bullet->Draw();
-			}
-			//Player->Shoot(10);
+			Player->DrawProjectiles();
 
 			Render();
 

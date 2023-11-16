@@ -16,15 +16,32 @@ Cannon::~Cannon() = default;
 
 void Cannon::Draw()
 {
-	DrawObject(texture, size, position, rotation, rotation_point);
+	DrawObject(texture, size, position, -rotation, rotation_point);
+}
+
+void Cannon::DrawProjectiles()
+{
+	for (Projectile* bullet : Bullets)
+	{
+		bullet->Draw();
+	}
+}
+
+void Cannon::MoveProjectiles(float dt)
+{
+	for (Projectile* bullet : Bullets)
+	{
+		bullet->Move(dt);
+	}
 }
 
 void Cannon::Shoot()
 {
-	//Bullets.push_back(new Projectile(position, 10, 10, 10));
+	Vec2 projectile_pos = { position.x + 170, position.y - 60 };
+	Bullets.push_back(new Projectile(projectile_pos, 10, 30, 50, 10, rotation));
 }
 
 void Cannon::rotate(double new_rotation)
 {
-	rotation = SDL_clamp(new_rotation, -90, 0);
+	rotation = SDL_clamp(new_rotation, 0, 90);
 }

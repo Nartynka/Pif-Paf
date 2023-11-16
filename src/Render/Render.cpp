@@ -13,7 +13,7 @@ SDL_Window* GetWindow()
 
 	if (!window)
 	{
-		window = SDL_CreateWindow("MoleFrog", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+		window = SDL_CreateWindow("Pif-Paf", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 		assert(window != nullptr && "Window could not be created!");
 	}
 
@@ -74,6 +74,16 @@ void DrawObject(SDL_Texture* texture, Vec2 size, Vec2 pos, double angle, Vec2 ro
 	SDL_Rect dsrect = { pos.x, pos.y, size.x, size.y };
 	assert(texture != nullptr && "Could not draw object, texture invalid!");
 	SDL_Point* center = new SDL_Point({ (int)rotation_point.x, (int)rotation_point.y });
+	SDL_SetRenderDrawColor(GetRenderer(), 255, 0, 0, 255);
+
+	SDL_RenderDrawPoint(GetRenderer(), pos.x + rotation_point.x, pos.y + rotation_point.y);
+	SDL_RenderDrawPoint(GetRenderer(), pos.x + rotation_point.x+1, pos.y + rotation_point.y + 1);
+	SDL_RenderDrawPoint(GetRenderer(), pos.x + rotation_point.x + 1, pos.y + rotation_point.y);
+	SDL_RenderDrawPoint(GetRenderer(), pos.x + rotation_point.x, pos.y + rotation_point.y + 1);
+	SDL_RenderDrawPoint(GetRenderer(), pos.x + rotation_point.x - 1, pos.y + rotation_point.y-1);
+	SDL_RenderDrawPoint(GetRenderer(), pos.x + rotation_point.x - 1, pos.y + rotation_point.y);
+	SDL_RenderDrawPoint(GetRenderer(), pos.x + rotation_point.x, pos.y + rotation_point.y-1);
+
 	SDL_RenderCopyEx(GetRenderer(), texture, NULL, &dsrect, angle, center, SDL_FLIP_NONE);
 }
 
