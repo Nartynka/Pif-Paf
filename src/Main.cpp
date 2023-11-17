@@ -6,6 +6,7 @@
 #include "Projectile/Projectile.h"
 #include <SDL_ttf.h>
 #include "AssetManager\AssetManager.h"
+#include "Button/Button.h"
 
 int main(int argc, char* args[])
 {
@@ -24,7 +25,10 @@ int main(int argc, char* args[])
 
 	Cannon* Player = new Cannon();
 
-	std::vector<Projectile*> Bullets;
+	Button* btn = new Button({ 100, 100 }, { 100, 100 }, []() {printf("CLICCCCKED"); });
+
+	std::vector<Button*> buttons;
+	buttons.push_back(btn);
 
 	bool quit = false;
 	SDL_Event event;
@@ -41,9 +45,9 @@ int main(int argc, char* args[])
 					quit = true;
 				if (event.type == SDL_KEYDOWN && event.key.repeat == 0 && event.key.keysym.sym == SDLK_SPACE)
 					Player->Shoot();
-				if (event.type == SDL_MOUSEBUTTONDOWN)
+				for (Button* btn : buttons)
 				{
-
+					btn->HandleClick(event);
 				}
 			}
 
@@ -53,11 +57,16 @@ int main(int argc, char* args[])
 
 			Player->MoveProjectiles(dt);
 
-			QueueTextSurface("aaa", { 500, 100 });
+			QueueTextSurface("abc", { 500, 100 });
 
 			Player->rotate(30.0); 
 			Player->Draw();
 			Player->DrawProjectiles();
+
+			for (Button* btn : buttons)
+			{
+				btn->Draw();
+			}
 
 			Render();
 
