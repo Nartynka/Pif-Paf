@@ -51,3 +51,13 @@ void Projectile::Move(float dt)
 
 	position += velocity;
 }
+
+bool Projectile::CheckScreenBounds()
+{
+	if (position.x + size.x < 0 || position.x > SCREEN_WIDTH || position.y < 0 || position.y > SCREEN_HEIGHT)
+	{
+		return true;
+	}
+
+	return false;
+}

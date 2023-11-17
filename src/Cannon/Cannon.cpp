@@ -21,9 +21,16 @@ void Cannon::Draw()
 
 void Cannon::DrawProjectiles()
 {
-	for (Projectile* bullet : Bullets)
+   	for (Projectile* bullet : Bullets)
 	{
-		bullet->Draw();
+		if (!bullet->CheckScreenBounds())
+			bullet->Draw();
+		else
+		{
+			delete bullet;
+			auto a = std::find(Bullets.begin(), Bullets.end(), bullet);
+			Bullets.erase(a);
+		}
 	}
 }
 

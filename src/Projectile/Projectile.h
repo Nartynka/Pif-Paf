@@ -9,6 +9,7 @@ public:
 
 	void Draw() override;
 	void Move(float dt);
+	bool CheckScreenBounds();
 private:
 	Vec2 velocity = { 0.f, 0.f };
 	float initial_velocity;
