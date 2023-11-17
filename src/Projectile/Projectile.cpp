@@ -41,6 +41,10 @@ void Projectile::Move(float dt)
 
 	printf("time: %f\n", -time);
 
+
+	//auto b = (const char*)&time;
+	//auto b = (const char*)&time;
+
 	// apply forces
 	velocity.y += gravity.y * dt;
 	velocity -= air_drag * dt;

@@ -1,10 +1,14 @@
 #include "Render.h"
 
-#include <SDL.h>
-#include <SDL_image.h>
-#include <cassert>
+#include "..\AssetManager\AssetManager.h"
 #include "..\Globals.h"
 
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#include <cassert>
+#include <string>
+#include <vector>
 
 SDL_Window* GetWindow()
 {
@@ -46,6 +50,7 @@ void RenderTerminate()
 
 void Render()
 {
+	RenderText();
 	SDL_SetRenderDrawColor(GetRenderer(), 255, 255, 255, 255);
 	SDL_RenderPresent(GetRenderer());
 	SDL_RenderClear(GetRenderer());
@@ -119,6 +124,41 @@ void DrawCircle(Vec2 pos, int radius)
 	}
 }
 
+struct Text
+{
+	const char* text;
+	Vec2 position;
+};
+std::vector<Text*> queued_text;
+
+void QueueTextSurface(const char* new_text, Vec2 position)
+{	
+	Text text_struct = Text({ new_text, position});
+	queued_text.push_back(&text_struct);
+}
+
+void RenderText()
+{
+	TTF_Font* font = AssetManager::Get()->GetFont();
+	assert(font != nullptr && "Unable to get font from asset manager");
+	SDL_Renderer* renderer = GetRenderer();
+
+	for (Text* text_struct : queued_text)
+	{
+		SDL_Surface* text_surface = TTF_RenderText_Solid(font, text_struct->text, { 0, 0, 0 });
+		assert(text_surface != nullptr && "Unable to create text surface!");
+		SDL_Texture* text_texture = SDL_CreateTextureFromSurface(renderer, text_surface);
+		assert(text_texture != NULL && "Unable to create texture from rendered text!");
+
+		SDL_Rect text_dsrect = { text_struct->position.x, text_struct->position.y, text_surface->w, text_surface->h };
+		SDL_RenderCopy(renderer, text_texture, NULL, &text_dsrect);
+
+		SDL_FreeSurface(text_surface);
+		SDL_DestroyTexture(text_texture);
+	}
+
+	queued_text.clear();
+}
 
 
 

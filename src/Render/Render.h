@@ -8,11 +8,14 @@ void RenderInit();
 void RenderTerminate();
 
 void Render();
+void RenderText();
 
 void DrawObject(SDL_Texture* texture, Vec2 size, Vec2 pos);
 void DrawObject(SDL_Texture* texture, Vec2 size, Vec2 pos, double angle, Vec2 rotation_point);
 
 void CreateTexture(const char* texture_path, SDL_Texture** out_texture, Vec2& out_size);
+
+void QueueTextSurface(const char* new_text, Vec2 position);
 
 void DrawRect(SDL_Rect& size, struct SDL_Color&& color);
 void DrawMole();

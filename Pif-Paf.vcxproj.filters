@@ -17,6 +17,12 @@
     <Filter Include="Source Files\GameObject">
       <UniqueIdentifier>{0b494982-f769-44bd-bdf7-a6cf8b59c021}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AssetManager">
+      <UniqueIdentifier>{635e2c1f-1412-46e5-b3d2-8ac1a199e4fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Button">
+      <UniqueIdentifier>{acbb8426-a71e-4bd6-bcbd-c0fda0318835}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -33,6 +39,12 @@
     </ClCompile>
     <ClCompile Include="src\GameObject\GameObject.cpp">
       <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AssetManager\AssetManager.cpp">
+      <Filter>Source Files\AssetManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Button\Button.cpp">
+      <Filter>Source Files\Button</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +65,12 @@
     </ClInclude>
     <ClInclude Include="src\GameObject\GameObject.h">
       <Filter>Source Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AssetManager\AssetManager.h">
+      <Filter>Source Files\AssetManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Button\Button.h">
+      <Filter>Source Files\Button</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@ if exist bin\x86\Debug\ (
 	del bin\x86\Debug\*.dll
 	ROBOCOPY ThirdParty\SDL2\lib\x86\   bin\x86\Debug SDL2.dll 
 	ROBOCOPY ThirdParty\SDL2_image\lib\x86\ bin\x86\Debug SDL2_image.dll
+	ROBOCOPY ThirdParty\SDL2_ttf\lib\x86\ bin\x86\Debug SDL2_ttf.dll
 ) 
 
 if exist bin\x86\Release\ (
@@ -10,6 +11,7 @@ if exist bin\x86\Release\ (
 	del bin\x86\Release\*.dll
 	ROBOCOPY ThirdParty\SDL2\lib\x86\   bin\x86\Release SDL2.dll 
 	ROBOCOPY ThirdParty\SDL2_image\lib\x86\ bin\x86\Release SDL2_image.dll
+	ROBOCOPY ThirdParty\SDL2_ttf\lib\x86\ bin\x86\Release SDL2_ttf.dll
 ) 
 
 if exist bin\x64\Debug\ (
@@ -17,6 +19,7 @@ if exist bin\x64\Debug\ (
 	del bin\x64\Debug\*.dll
 	ROBOCOPY ThirdParty\SDL2\lib\x64\   bin\x64\Debug SDL2.dll 
 	ROBOCOPY ThirdParty\SDL2_image\lib\x64\ bin\x64\Debug SDL2_image.dll
+	ROBOCOPY ThirdParty\SDL2_ttf\lib\x64\ bin\x64\Debug SDL2_ttf.dll
 ) 
 
 if exist bin\x64\Release\ (
@@ -24,6 +27,7 @@ if exist bin\x64\Release\ (
 	del bin\x64\Release\*.dll
 	ROBOCOPY ThirdParty\SDL2\lib\x64\   bin\x64\Release SDL2.dll 
 	ROBOCOPY ThirdParty\SDL2_image\lib\x64\ bin\x64\Release SDL2_image.dll
+	ROBOCOPY ThirdParty\SDL2_ttf\lib\x64\ bin\x64\Release SDL2_ttf.dll
 ) 
 
 exit 0
