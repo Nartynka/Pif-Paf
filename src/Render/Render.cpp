@@ -92,16 +92,26 @@ void DrawObject(SDL_Texture* texture, Vec2 size, Vec2 pos, double angle, Vec2 ro
 	SDL_RenderCopyEx(GetRenderer(), texture, NULL, &dsrect, angle, center, SDL_FLIP_NONE);
 }
 
-void DrawRect(SDL_Rect& size, SDL_Color&& color)
+void DrawFillRect(SDL_Rect& size, SDL_Color&& color)
 {
 	SDL_SetRenderDrawColor(GetRenderer(), color.r, color.g, color.b, color.a);
 	SDL_RenderFillRect(GetRenderer(), &size);
 }
 
+void DrawRect(SDL_Rect& size, SDL_Color&& color)
+{
+	SDL_SetRenderDrawColor(GetRenderer(), color.r, color.g, color.b, color.a);
+	SDL_RenderDrawRect(GetRenderer(), &size);
+
+	//SDL_RenderDrawRect(GetRenderer(), {size.x, size.y, size.w, size.h});
+}
+
+
+
 void DrawGround()
 {
 	SDL_Rect ground = { 0, GROUND_LEVEL, SCREEN_WIDTH, SCREEN_HEIGHT - GROUND_LEVEL };
-	DrawRect(ground, { 100, 100, 100, 255 });
+	DrawFillRect(ground, { 100, 100, 100, 255 });
 }
 
 
@@ -126,7 +136,7 @@ void DrawCircle(Vec2 pos, int radius)
 
 std::vector<Text*> queued_text;
 
-void QueueTextSurface(const char* new_text, Vec2&& position)
+void QueueText(const char* new_text, Vec2&& position)
 {	
 	//std::string text = new_text;
 	Text* text_struct = new Text({ new_text, position});
@@ -174,17 +184,17 @@ void RenderText()
 void DrawFrog()
 {
 	SDL_Rect frogHead = { SCREEN_WIDTH / 2 + 150, SCREEN_HEIGHT / 2 - 50, 100, 50 };
-	DrawRect(frogHead, { 100, 255, 50, 255 });
+	DrawFillRect(frogHead, { 100, 255, 50, 255 });
 
 	SDL_Rect frog = { SCREEN_WIDTH / 2 + 100, SCREEN_HEIGHT / 2, 200, 100 };
-	DrawRect(frog, { 100, 255, 50, 255 });
+	DrawFillRect(frog, { 100, 255, 50, 255 });
 }
 
 void DrawMole()
 {
 	SDL_Rect moleHead = { SCREEN_WIDTH / 2 - 250, SCREEN_HEIGHT / 2 - 50, 100, 50 };	
-	DrawRect(moleHead, { 100, 100, 100, 255 });
+	DrawFillRect(moleHead, { 100, 100, 100, 255 });
 
 	SDL_Rect mole = { SCREEN_WIDTH / 2 - 300, SCREEN_HEIGHT / 2, 200, 100 };
-	DrawRect(mole, { 100, 100, 100, 255 });
+	DrawFillRect(mole, { 100, 100, 100, 255 });
 }

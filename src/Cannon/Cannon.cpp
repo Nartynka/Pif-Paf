@@ -38,10 +38,25 @@ void Cannon::MoveProjectiles(float dt)
 void Cannon::Shoot()
 {
 	Vec2 projectile_pos = { position.x + 170, position.y - 60 };
-	Bullets.push_back(new Projectile(projectile_pos, 10, 30, 50, 10, rotation));
+	Bullets.push_back(new Projectile(projectile_pos, 10, 10, 10, 1, rotation));
 }
 
-void Cannon::rotate(double new_rotation)
+void Cannon::ChangeRotation(float new_rotation)
 {
 	rotation = SDL_clamp(new_rotation, 0, 90);
+}
+
+void Cannon::ChangeVelocity(float new_vel)
+{
+	initial_velocity = SDL_clamp(new_vel, 0, 100);
+}
+
+void Cannon::ChangeGravity(float new_g)
+{
+	graivty = SDL_clamp(new_g, 0, 100);
+}
+
+void Cannon::ChangeAirDrag(float new_ad)
+{
+	air_drag = SDL_clamp(new_ad, 0, 100);
 }

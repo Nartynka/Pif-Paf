@@ -25,7 +25,7 @@ int main(int argc, char* args[])
 
 	Cannon* Player = new Cannon();
 
-	Button* btn = new Button({ 100, 100 }, { 100, 100 }, []() {printf("CLICCCCKED"); });
+	Button* btn = new Button({ 100, 100 }, { 100, 100 }, ">", []() {printf("CLICCCCKED"); });
 
 	std::vector<Button*> buttons;
 	buttons.push_back(btn);
@@ -58,9 +58,9 @@ int main(int argc, char* args[])
 			Player->MoveProjectiles(dt);
 
 
-			QueueTextSurface("abc", { 500, 100 });
+			QueueText("abc", { 500, 100 });
 
-			Player->rotate(30.0); 
+			Player->ChangeRotation(30.0); 
 			Player->Draw();
 			Player->DrawProjectiles();
 
