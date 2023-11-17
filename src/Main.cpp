@@ -25,7 +25,7 @@ int main(int argc, char* args[])
 
 	Cannon* Player = new Cannon();
 
-	Button* btn = new Button({ 100, 100 }, { 100, 100 }, ">", []() {printf("CLICCCCKED"); });
+	Button* btn = new Button({ 50, 50 }, { 200, 400 }, ">", []() {printf("CLICCCCKED"); });
 
 	std::vector<Button*> buttons;
 	buttons.push_back(btn);
@@ -47,7 +47,7 @@ int main(int argc, char* args[])
 					Player->Shoot();
 				for (Button* btn : buttons)
 				{
-					btn->HandleClick(event);
+					btn->HandleInput(event);
 				}
 			}
 

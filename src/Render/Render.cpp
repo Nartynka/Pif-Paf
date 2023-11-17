@@ -136,10 +136,9 @@ void DrawCircle(Vec2 pos, int radius)
 
 std::vector<Text*> queued_text;
 
-void QueueText(const char* new_text, Vec2&& position)
+void QueueText(const char* new_text, Vec2&& position, bool is_bold)
 {	
-	//std::string text = new_text;
-	Text* text_struct = new Text({ new_text, position});
+	Text* text_struct = new Text({ new_text, position, is_bold});
 	queued_text.push_back(text_struct);
 }
 
@@ -147,11 +146,14 @@ void RenderText()
 {
 	TTF_Font* font = AssetManager::Get()->GetFont();
 	assert(font != nullptr && "Unable to get font from asset manager");
+	TTF_Font* bold_font = AssetManager::Get()->GetBoldFont();
+	assert(bold_font != nullptr && "Unable to get bold font from asset manager");
+
 	SDL_Renderer* renderer = GetRenderer();
 
 	for (Text* text_struct : queued_text)
 	{
-		SDL_Surface* text_surface = TTF_RenderText_Solid(font, text_struct->text, {0, 0, 0});
+		SDL_Surface* text_surface = TTF_RenderText_Solid(text_struct->is_bold ? bold_font : font, text_struct->text, {0, 0, 0});
 		assert(text_surface != nullptr && "Unable to create text surface!");
 		SDL_Texture* text_texture = SDL_CreateTextureFromSurface(renderer, text_surface);
 		assert(text_texture != NULL && "Unable to create texture from rendered text!");

@@ -11,14 +11,14 @@ Button::~Button() = default;
 
 void Button::Draw()
 {
-	SDL_Rect rect = { (int)size.x, (int)size.y, (int)position.x, (int)position.y };
+	SDL_Rect rect = { (int)position.x, (int)position.y, (int)size.x, (int)size.y };
 	SDL_Color color = is_hovering ? SDL_Color({ 150, 150, 150, 255 }) : SDL_Color({255, 255, 255, 255});
 	DrawFillRect(rect, (SDL_Color&&)color);
 	DrawRect(rect, { 50, 50, 50, 255 });
-	QueueText(text, { position.x + size.x / 2 - 6, position.y + size.y / 2 - 12});
+	QueueText(text, { position.x + size.x / 2 - 6, position.y + size.y / 2 - 12}, true);
 }
 
-void Button::HandleClick(SDL_Event& e) {
+void Button::HandleInput(SDL_Event& e) {
 	bool is_on_btn = false;
 	if (e.type == SDL_MOUSEMOTION)
 	{

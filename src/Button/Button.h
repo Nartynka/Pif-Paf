@@ -13,7 +13,7 @@ public:
 	~Button();
 
 	void Draw();
-	void HandleClick(SDL_Event& e);
+	void HandleInput(SDL_Event& e);
 private:
 	Vec2 size;
 	Vec2 position;

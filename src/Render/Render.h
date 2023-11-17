@@ -15,7 +15,7 @@ void DrawObject(SDL_Texture* texture, Vec2 size, Vec2 pos, double angle, Vec2 ro
 
 void CreateTexture(const char* texture_path, SDL_Texture** out_texture, Vec2& out_size);
 
-void QueueText(const char* new_text, Vec2&& position);
+void QueueText(const char* new_text, Vec2&& position, bool is_bold = false);
 void DrawFillRect(SDL_Rect& size, struct SDL_Color&& color);
 void DrawRect(SDL_Rect& size, SDL_Color&& color);
 void DrawMole();
