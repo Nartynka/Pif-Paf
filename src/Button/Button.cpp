@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 
-Button::Button(Vec2 size, Vec2 position, const char* btn_text, std::function<void()> callback) : size(size), position(position), text(btn_text), OnClick(callback)
+Button::Button(Vec2 size, Vec2 position, const char* btn_text, std::function<void(float)> callback, float func_param) : size(size), position(position), text(btn_text), OnClick(callback), func_param(func_param)
 {
 }
 
@@ -18,26 +18,28 @@ void Button::Draw()
 	QueueText(text, { position.x + size.x / 2 - 6, position.y + size.y / 2 - 12}, true);
 }
 
-void Button::HandleInput(SDL_Event& e) {
-	bool is_on_btn = false;
+void Button::HandleInput(SDL_Event& e) 
+{
+	int mouse_x, mouse_y;
+	SDL_GetMouseState(&mouse_x, &mouse_y);
+
 	if (e.type == SDL_MOUSEMOTION)
 	{
-		int mouse_x, mouse_y;
-
-		SDL_GetMouseState(&mouse_x, &mouse_y);
-
-		if (mouse_x >= position.x && mouse_x < position.x + size.x && mouse_y >= position.y && mouse_y < position.y + size.y) {
+		if (mouse_x >= position.x && mouse_x < position.x + size.x && mouse_y >= position.y && mouse_y < position.y + size.y)
+		{
 			is_hovering = true;
-			is_on_btn = true;
 		}
 		else
 		{
 			is_hovering = false;
 		}
 	}
-	if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
-		if(is_on_btn)
-			OnClick();
+	if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) 
+	{
+		if (mouse_x >= position.x && mouse_x < position.x + size.x && mouse_y >= position.y && mouse_y < position.y + size.y) 
+		{
+			OnClick(func_param);
+		}
 	}
 	
 }

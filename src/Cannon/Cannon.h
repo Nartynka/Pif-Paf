@@ -12,11 +12,16 @@ public:
 	void DrawProjectiles();
 	void MoveProjectiles(float dt);
 	void Shoot();
-	void ChangeRotation(float new_rotation);
 
-	void ChangeVelocity(float new_vel);
-	void ChangeGravity(float new_g);
-	void ChangeAirDrag(float new_ad);
+	void IncreaseRotation(float by_rotation);
+	void IncreaseVelocity(float by_vel);
+	void IncreaseGravity(float by_g);
+	void IncreaseAirDrag(float by_ad);
+
+	int GetRotation();
+	int GetVelocity();
+	int GetGravity();
+	int GetAirDrag();
 
 private:
 	Vec2 rotation_point;

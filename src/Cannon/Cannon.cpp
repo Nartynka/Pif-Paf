@@ -48,22 +48,40 @@ void Cannon::Shoot()
 	Bullets.push_back(new Projectile(projectile_pos, 10, 10, 10, 1, rotation));
 }
 
-void Cannon::ChangeRotation(float new_rotation)
+void Cannon::IncreaseRotation(float by_rotation)
 {
-	rotation = SDL_clamp(new_rotation, 0, 90);
+	printf("changing: %f", by_rotation);
+	rotation = SDL_clamp(rotation+by_rotation, 0, 90);
 }
 
-void Cannon::ChangeVelocity(float new_vel)
+void Cannon::IncreaseVelocity(float by_vel)
 {
-	initial_velocity = SDL_clamp(new_vel, 0, 100);
+	initial_velocity = SDL_clamp(rotation + by_vel, 0, 100);
 }
 
-void Cannon::ChangeGravity(float new_g)
+void Cannon::IncreaseGravity(float by_g)
 {
-	graivty = SDL_clamp(new_g, 0, 100);
+	graivty = SDL_clamp(rotation + by_g, 0, 100);
 }
 
-void Cannon::ChangeAirDrag(float new_ad)
+void Cannon::IncreaseAirDrag(float by_ad)
 {
-	air_drag = SDL_clamp(new_ad, 0, 100);
+	air_drag = SDL_clamp(rotation + by_ad, 0, 100);
+}
+
+int Cannon::GetRotation()
+{
+	return (int)rotation;
+}
+int Cannon::GetVelocity()
+{
+	return (int)initial_velocity;
+}
+int Cannon::GetGravity()
+{
+	return (int)graivty;
+}
+int Cannon::GetAirDrag()
+{
+	return (int)air_drag;
 }

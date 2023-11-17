@@ -9,7 +9,7 @@ union SDL_Event;
 class Button
 {
 public:
-	Button(Vec2 size, Vec2 position, const char* btn_text, std::function<void()> callback);
+	Button(Vec2 size, Vec2 position, const char* btn_text, std::function<void(float)> callback, float func_param);
 	~Button();
 
 	void Draw();
@@ -18,6 +18,7 @@ private:
 	Vec2 size;
 	Vec2 position;
 	const char* text;
-	std::function<void()> OnClick;
+	std::function<void(float)> OnClick;
+	float func_param;
 	bool is_hovering = false;
 };

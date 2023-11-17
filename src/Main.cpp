@@ -25,10 +25,14 @@ int main(int argc, char* args[])
 
 	Cannon* Player = new Cannon();
 
-	Button* btn = new Button({ 50, 50 }, { 200, 400 }, ">", []() {printf("CLICCCCKED"); });
+	Button* rotation_lt_btn = new Button({ 50, 50 }, { 300, 400 }, "<", [Player](float a) { Player->IncreaseRotation(a); }, -5);
+	Button* rotation_gt_btn = new Button({ 50, 50 }, { 420, 400 }, ">", [Player](float a) { Player->IncreaseRotation(a); }, 5);
 
 	std::vector<Button*> buttons;
-	buttons.push_back(btn);
+	buttons.push_back(rotation_lt_btn);
+	buttons.push_back(rotation_gt_btn);
+
+	char buffer[20];
 
 	bool quit = false;
 	SDL_Event event;
@@ -58,9 +62,11 @@ int main(int argc, char* args[])
 			Player->MoveProjectiles(dt);
 
 
-			QueueText("abc", { 500, 100 });
+			QueueText("Rotation (in °)", { 500, 100 });
+			sprintf_s(buffer, "%d", Player->GetRotation());
+			QueueText(buffer, { 500, 150 });
 
-			Player->ChangeRotation(30.0); 
+			//Player->ChangeRotation(30.0); 
 			Player->Draw();
 			Player->DrawProjectiles();
 
