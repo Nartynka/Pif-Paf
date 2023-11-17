@@ -17,12 +17,11 @@ void Button::Draw()
 
 void Button::HandleClick(SDL_Event& e) {
 	if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
-		printf("handeee");
-		int mouseX, mouseY;
-		SDL_GetMouseState(&mouseX, &mouseY);
-
-		if (mouseX >= position.x && mouseX < position.x + size.x && mouseY >= position.y && mouseY < position.y + size.y) {
-			printf("click!");
+		int mouse_x, mouse_y;
+		
+		SDL_GetMouseState(&mouse_x, &mouse_y);
+		
+		if (mouse_x >= position.x && mouse_x < position.x + size.x && mouse_y >= position.y && mouse_y < position.y + size.y) {
 			OnClick();
 		}
 	}

@@ -7,8 +7,8 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <cassert>
-#include <string>
 #include <vector>
+#include "..\Text\Text.h"
 
 SDL_Window* GetWindow()
 {
@@ -124,17 +124,13 @@ void DrawCircle(Vec2 pos, int radius)
 	}
 }
 
-struct Text
-{
-	const char* text;
-	Vec2 position;
-};
 std::vector<Text*> queued_text;
 
-void QueueTextSurface(const char* new_text, Vec2 position)
+void QueueTextSurface(const char* new_text, Vec2&& position)
 {	
-	Text text_struct = Text({ new_text, position});
-	queued_text.push_back(&text_struct);
+	//std::string text = new_text;
+	Text* text_struct = new Text({ new_text, position});
+	queued_text.push_back(text_struct);
 }
 
 void RenderText()
@@ -145,7 +141,7 @@ void RenderText()
 
 	for (Text* text_struct : queued_text)
 	{
-		SDL_Surface* text_surface = TTF_RenderText_Solid(font, text_struct->text, { 0, 0, 0 });
+		SDL_Surface* text_surface = TTF_RenderText_Solid(font, text_struct->text, {0, 0, 0});
 		assert(text_surface != nullptr && "Unable to create text surface!");
 		SDL_Texture* text_texture = SDL_CreateTextureFromSurface(renderer, text_surface);
 		assert(text_texture != NULL && "Unable to create texture from rendered text!");
@@ -155,6 +151,7 @@ void RenderText()
 
 		SDL_FreeSurface(text_surface);
 		SDL_DestroyTexture(text_texture);
+		delete text_struct;
 	}
 
 	queued_text.clear();

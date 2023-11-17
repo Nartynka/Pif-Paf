@@ -23,6 +23,9 @@
     <Filter Include="Source Files\Button">
       <UniqueIdentifier>{acbb8426-a71e-4bd6-bcbd-c0fda0318835}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Text">
+      <UniqueIdentifier>{9eac551c-7b8c-4af7-9af7-d18a69fc133d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -71,6 +74,9 @@
     </ClInclude>
     <ClInclude Include="src\Button\Button.h">
       <Filter>Source Files\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Text\Text.h">
+      <Filter>Source Files\Text</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

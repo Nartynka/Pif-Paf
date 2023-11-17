@@ -57,6 +57,7 @@ int main(int argc, char* args[])
 
 			Player->MoveProjectiles(dt);
 
+
 			QueueTextSurface("abc", { 500, 100 });
 
 			Player->rotate(30.0); 

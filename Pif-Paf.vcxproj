@@ -35,6 +35,7 @@
     <ClInclude Include="src\Globals.h" />
     <ClInclude Include="src\Projectile\Projectile.h" />
     <ClInclude Include="src\Render\Render.h" />
+    <ClInclude Include="src\Text\Text.h" />
     <ClInclude Include="src\Vec2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
