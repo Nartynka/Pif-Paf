@@ -29,6 +29,10 @@ private:
 	float rotation = 30.f;
 	std::vector<class Projectile*> Bullets;
 
+	SDL_Texture* wheels_texture;
+	Vec2 wheels_size;
+	Vec2 wheels_position;
+
 	float initial_velocity = 10.f;
 	float graivty = 10.f;
 	float air_drag = 1.f;

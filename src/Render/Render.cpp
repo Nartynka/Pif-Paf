@@ -168,35 +168,3 @@ void RenderText()
 
 	queued_text.clear();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void DrawFrog()
-{
-	SDL_Rect frogHead = { SCREEN_WIDTH / 2 + 150, SCREEN_HEIGHT / 2 - 50, 100, 50 };
-	DrawFillRect(frogHead, { 100, 255, 50, 255 });
-
-	SDL_Rect frog = { SCREEN_WIDTH / 2 + 100, SCREEN_HEIGHT / 2, 200, 100 };
-	DrawFillRect(frog, { 100, 255, 50, 255 });
-}
-
-void DrawMole()
-{
-	SDL_Rect moleHead = { SCREEN_WIDTH / 2 - 250, SCREEN_HEIGHT / 2 - 50, 100, 50 };	
-	DrawFillRect(moleHead, { 100, 100, 100, 255 });
-
-	SDL_Rect mole = { SCREEN_WIDTH / 2 - 300, SCREEN_HEIGHT / 2, 200, 100 };
-	DrawFillRect(mole, { 100, 100, 100, 255 });
-}

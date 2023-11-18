@@ -20,7 +20,5 @@ void CreateTexture(const char* texture_path, SDL_Texture** out_texture, Vec2& ou
 void QueueText(const char* new_text, Vec2&& position, SDL_Color color, bool is_bold = false);
 void DrawFillRect(SDL_Rect& size, SDL_Color&& color);
 void DrawRect(SDL_Rect& size, SDL_Color&& color);
-void DrawMole();
-void DrawFrog();
 void DrawGround();
 void DrawCircle(Vec2 pos, int radius);

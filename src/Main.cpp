@@ -85,8 +85,6 @@ int main(int argc, char* args[])
 			}
 
 			DrawGround();
-			DrawFrog();
-			DrawMole();
 
 			Player->MoveProjectiles(dt);
 			Player->Draw();
