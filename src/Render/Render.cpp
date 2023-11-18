@@ -74,7 +74,7 @@ void DrawObject(SDL_Texture* texture, Vec2 size, Vec2 pos)
 	SDL_RenderCopy(GetRenderer(), texture, NULL, &dsrect);
 }
 
-void DrawObject(SDL_Texture* texture, Vec2 size, Vec2 pos, double angle, Vec2 rotation_point)
+void DrawObject(SDL_Texture* texture, Vec2 size, Vec2 pos, float angle, Vec2 rotation_point)
 {
 	SDL_Rect dsrect = { pos.x, pos.y, size.x, size.y };
 	assert(texture != nullptr && "Could not draw object, texture invalid!");
@@ -89,7 +89,7 @@ void DrawObject(SDL_Texture* texture, Vec2 size, Vec2 pos, double angle, Vec2 ro
 	SDL_RenderDrawPoint(GetRenderer(), pos.x + rotation_point.x - 1, pos.y + rotation_point.y);
 	SDL_RenderDrawPoint(GetRenderer(), pos.x + rotation_point.x, pos.y + rotation_point.y-1);
 
-	SDL_RenderCopyEx(GetRenderer(), texture, NULL, &dsrect, angle, center, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(GetRenderer(), texture, NULL, &dsrect, (double)angle, center, SDL_FLIP_NONE);
 }
 
 void DrawFillRect(SDL_Rect& size, SDL_Color&& color)

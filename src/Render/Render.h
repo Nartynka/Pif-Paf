@@ -11,7 +11,7 @@ void Render();
 void RenderText();
 
 void DrawObject(SDL_Texture* texture, Vec2 size, Vec2 pos);
-void DrawObject(SDL_Texture* texture, Vec2 size, Vec2 pos, double angle, Vec2 rotation_point);
+void DrawObject(SDL_Texture* texture, Vec2 size, Vec2 pos, float angle, Vec2 rotation_point);
 
 void CreateTexture(const char* texture_path, SDL_Texture** out_texture, Vec2& out_size);
 

@@ -44,13 +44,12 @@ void Cannon::MoveProjectiles(float dt)
 
 void Cannon::Shoot()
 {
-	Vec2 projectile_pos = { position.x + 170, position.y - 60 };
-	Bullets.push_back(new Projectile(projectile_pos, 10, 10, 10, 1, rotation));
+	projectile_spawn_point = { position.x + rotation_point.x + size.x - rotation * 2.f, position.y + rotation_point.y - rotation * 2.f};
+	Bullets.push_back(new Projectile(projectile_spawn_point, 10, 10, 10, 1, rotation));
 }
 
 void Cannon::IncreaseRotation(float by_rotation)
 {
-	printf("changing: %f", by_rotation);
 	rotation = SDL_clamp(rotation+by_rotation, 0, 90);
 }
 

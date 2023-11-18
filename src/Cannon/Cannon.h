@@ -25,7 +25,8 @@ public:
 
 private:
 	Vec2 rotation_point;
-	double rotation = 0.0;
+	Vec2 projectile_spawn_point;
+	float rotation = 30.f;
 	std::vector<class Projectile*> Bullets;
 
 	int initial_velocity = 10;

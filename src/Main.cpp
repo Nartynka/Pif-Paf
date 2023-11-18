@@ -8,6 +8,15 @@
 #include "AssetManager\AssetManager.h"
 #include "Button/Button.h"
 
+
+void DrawButtons(const char* title, Vec2&& title_pos, int value, Vec2&& value_pos)
+{
+	static char buffer[20];
+	QueueText(title, (Vec2&&)title_pos);
+	sprintf_s(buffer, "%d", value);
+	QueueText(buffer, (Vec2&&)value_pos);
+}
+
 int main(int argc, char* args[])
 {
 	float dt = (float)(SDL_GetTicks() / 1000.f);
@@ -32,7 +41,7 @@ int main(int argc, char* args[])
 	buttons.push_back(rotation_lt_btn);
 	buttons.push_back(rotation_gt_btn);
 
-	char buffer[20];
+	
 
 	bool quit = false;
 	SDL_Event event;
@@ -60,13 +69,9 @@ int main(int argc, char* args[])
 			DrawMole();
 
 			Player->MoveProjectiles(dt);
+		
+			DrawButtons("Rotation (in °)", { 500, 100 }, Player->GetRotation(), { 500, 150 });
 
-
-			QueueText("Rotation (in °)", { 500, 100 });
-			sprintf_s(buffer, "%d", Player->GetRotation());
-			QueueText(buffer, { 500, 150 });
-
-			//Player->ChangeRotation(30.0); 
 			Player->Draw();
 			Player->DrawProjectiles();
 
