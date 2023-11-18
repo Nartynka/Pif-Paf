@@ -45,27 +45,27 @@ void Cannon::MoveProjectiles(float dt)
 void Cannon::Shoot()
 {
 	projectile_spawn_point = { position.x + rotation_point.x + size.x - rotation * 2.f, position.y + rotation_point.y - rotation * 2.f};
-	Bullets.push_back(new Projectile(projectile_spawn_point, 10, 10, 10, 1, rotation));
+	Bullets.push_back(new Projectile(projectile_spawn_point, 10, initial_velocity, graivty, air_drag, rotation));
 }
 
 void Cannon::IncreaseRotation(float by_rotation)
 {
-	rotation = SDL_clamp(rotation+by_rotation, 0, 90);
+	rotation = SDL_clamp(rotation + by_rotation, 0, 90);
 }
 
 void Cannon::IncreaseVelocity(float by_vel)
 {
-	initial_velocity = SDL_clamp(rotation + by_vel, 0, 100);
+	initial_velocity = SDL_clamp(initial_velocity + by_vel, 0, 999);
 }
 
 void Cannon::IncreaseGravity(float by_g)
 {
-	graivty = SDL_clamp(rotation + by_g, 0, 100);
+	graivty = SDL_clamp(graivty + by_g, 0, 999);
 }
 
 void Cannon::IncreaseAirDrag(float by_ad)
 {
-	air_drag = SDL_clamp(rotation + by_ad, 0, 100);
+	air_drag = SDL_clamp(air_drag + by_ad, 0, 999);
 }
 
 int Cannon::GetRotation()

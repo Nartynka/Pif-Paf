@@ -8,12 +8,10 @@
 #include "AssetManager\AssetManager.h"
 #include "Button/Button.h"
 
-
-void DrawButtons(const char* title, Vec2&& title_pos, int value, Vec2&& value_pos)
+void DrawControls(const char* title, Vec2&& title_pos, int value, Vec2&& value_pos, char* buffer)
 {
-	static char buffer[20];
-	QueueText(title, (Vec2&&)title_pos, { 200, 200, 200 });
-	sprintf_s(buffer, "%d", value);
+	QueueText(title, (Vec2&&)title_pos, { 230, 230, 230 });
+	sprintf_s(buffer, 4, "%d", value);
 	QueueText(buffer, (Vec2&&)value_pos, { 200, 200, 200 });
 }
 
@@ -34,14 +32,36 @@ int main(int argc, char* args[])
 
 	Cannon* Player = new Cannon();
 
-	Button* rotation_lt_btn = new Button({ 50, 50 }, { 80, 620 }, "<", [Player](float a) { Player->IncreaseRotation(a); }, -5);
-	Button* rotation_gt_btn = new Button({ 50, 50 }, { 200, 620 }, ">", [Player](float a) { Player->IncreaseRotation(a); }, 5);
+	Button* rotation_lt_btn = new Button({ 40, 40 }, { 80, 620 }, "<", [&Player](float value) { Player->IncreaseRotation(value); }, -5);
+	Button* rotation_gt_btn = new Button({ 40, 40 }, { 180, 620 }, ">", [&Player](float value) { Player->IncreaseRotation(value); }, 5);
+
+	Button* velocity_lt_btn = new Button({ 40, 40 }, { 80 + 300, 620 }, "<", [&Player](float value) { Player->IncreaseVelocity(value); }, -5);
+	Button* velocity_gt_btn = new Button({ 40, 40 }, { 180 + 300, 620 }, ">", [&Player](float value) { Player->IncreaseVelocity(value); }, 5);
+
+	Button* gravity_lt_btn = new Button({ 40, 40 }, { 80 + 300 * 2, 620 }, "<", [&Player](float value) { Player->IncreaseGravity(value); }, -5);
+	Button* gravity_gt_btn = new Button({ 40, 40 }, { 180 + 300 * 2, 620 }, ">", [&Player](float value) { Player->IncreaseGravity(value); }, 5);
+
+	Button* air_drag_lt_btn = new Button({ 40, 40 }, { 80 + 300 * 3, 620 }, "<", [&Player](float value) { Player->IncreaseAirDrag(value); }, -1);
+	Button* air_drag_gt_btn = new Button({ 40, 40 }, { 180 + 300 * 3, 620 }, ">", [&Player](float value) { Player->IncreaseAirDrag(value); }, 1);
 
 	std::vector<Button*> buttons;
 	buttons.push_back(rotation_lt_btn);
 	buttons.push_back(rotation_gt_btn);
 
-	
+	buttons.push_back(velocity_lt_btn);
+	buttons.push_back(velocity_gt_btn);
+
+	buttons.push_back(gravity_lt_btn);
+	buttons.push_back(gravity_gt_btn);
+
+	buttons.push_back(air_drag_lt_btn);
+	buttons.push_back(air_drag_gt_btn);
+
+	char rotation_buffer[4];
+	char velocity_buffer[4];
+	char gravity_buffer[4];
+	char air_drag_buffer[4];
+
 
 	bool quit = false;
 	SDL_Event event;
@@ -69,11 +89,13 @@ int main(int argc, char* args[])
 			DrawMole();
 
 			Player->MoveProjectiles(dt);
-		
-			DrawButtons("Rotation (in °)", { 70, 580 }, Player->GetRotation(), { 155, 630 });
-
 			Player->Draw();
 			Player->DrawProjectiles();
+
+			DrawControls("Rotation", { 98, 585 }, Player->GetRotation(), { 137, 629 }, rotation_buffer);
+			DrawControls("Initial velocity", { 345, 585 }, Player->GetVelocity(), { 137 + 300, 629 }, velocity_buffer);
+			DrawControls("Gravity", { 98 + 300 * 2, 585 }, Player->GetGravity(), { 137 + 300 * 2, 629 }, gravity_buffer);
+			DrawControls("Air Drag", { 98 + 300 * 3, 585 }, Player->GetAirDrag(), { 137 + 300 * 3, 629 }, air_drag_buffer);
 
 			for (Button* btn : buttons)
 			{

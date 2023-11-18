@@ -29,7 +29,7 @@ private:
 	float rotation = 30.f;
 	std::vector<class Projectile*> Bullets;
 
-	int initial_velocity = 10;
+	float initial_velocity = 10.f;
 	float graivty = 10.f;
 	float air_drag = 1.f;
 };
