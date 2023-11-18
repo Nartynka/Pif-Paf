@@ -64,7 +64,7 @@ int main(int argc, char* args[])
 	char gravity_buffer[4];
 	char air_drag_buffer[4];
 
-	bool should_fire_only_one = true;
+	bool should_fire_only_one = false;
 
 	bool quit = false;
 	SDL_Event event;
@@ -103,7 +103,7 @@ int main(int argc, char* args[])
 			Player->DrawProjectiles();
 
 			QueueText("Press space to fire", { 500, 530 }, { 150, 150, 150 });
-			QueueText(should_fire_only_one ? "Mode: ONE" : "Mode: MANY", {SCREEN_WIDTH - 140, 20}, {150, 150, 150});
+			QueueText(should_fire_only_one ? "Mode: ONE" : "Mode: MANY", {SCREEN_WIDTH - 140, 20}, {150, 150, 150}, true);
 			QueueText("Press M to change mode", { SCREEN_WIDTH - 300, 50 }, { 150, 150, 150 });
 
 			DrawControls("Rotation", { 98, 585 }, Player->GetRotation(), { 137, 629 }, rotation_buffer);
@@ -113,7 +113,7 @@ int main(int argc, char* args[])
 
 			if (should_fire_only_one)
 			{
-				// DRAW STATS
+				Player->DrawStats();
 			}
 
 			for (Button* btn : buttons)

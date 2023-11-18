@@ -4,6 +4,7 @@
 #include "../Projectile/Projectile.h"
 
 #include <SDL_stdinc.h>
+#include <SDL_pixels.h>
 
 Cannon::Cannon()
 {
@@ -48,7 +49,7 @@ void Cannon::MoveProjectiles(float dt)
 void Cannon::Shoot()
 {
 	projectile_spawn_point = { position.x + rotation_point.x + size.x - rotation * 1.5f, position.y + rotation_point.y - rotation};
-	Bullets.push_back(new Projectile(projectile_spawn_point, 10, initial_velocity, graivty, air_drag, rotation));
+	Bullets.push_back(new Projectile(projectile_spawn_point, 10, initial_velocity, gravity, air_drag, rotation));
 }
 
 void Cannon::IncreaseRotation(float by_rotation)
@@ -63,7 +64,7 @@ void Cannon::IncreaseVelocity(float by_vel)
 
 void Cannon::IncreaseGravity(float by_g)
 {
-	graivty = SDL_clamp(graivty + by_g, 0, 999);
+	gravity = SDL_clamp(gravity + by_g, 0, 999);
 }
 
 void Cannon::IncreaseAirDrag(float by_ad)
@@ -81,7 +82,7 @@ int Cannon::GetVelocity()
 }
 int Cannon::GetGravity()
 {
-	return (int)graivty;
+	return (int)gravity;
 }
 int Cannon::GetAirDrag()
 {
@@ -90,5 +91,30 @@ int Cannon::GetAirDrag()
 
 int Cannon::GetBulletsCount()
 {
-	return Bullets.size();
+	return (int)Bullets.size();
+}
+
+void Cannon::DrawStats()
+{
+
+	float angle = -rotation * M_PI / 180.0;
+
+	// calculate the time spend in air
+	float time = -(2 * initial_velocity * sin(angle)) / gravity;
+	// calculate the distance traveled by the bullet
+	float distance = -(initial_velocity * initial_velocity * sin(2 * angle)) / gravity;
+
+	sprintf_s(time_buffer, "%f", time);
+	sprintf_s(distance_buffer, "%f", distance);
+
+	QueueText("Time spend in air: ", { 20, 20 }, { 150, 150, 150, 150 }, true);
+	QueueText("Distance traveled: ", { 20, 50 }, { 150, 150, 150, 150 }, true);
+
+	if (GetBulletsCount() > 0)
+	{
+		return;
+	}
+
+	QueueText(time_buffer, { 270, 20 }, { 150, 150, 150, 150 });
+	QueueText(distance_buffer, { 270, 50 }, { 150, 150, 150, 150 });
 }

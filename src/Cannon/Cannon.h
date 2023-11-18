@@ -25,6 +25,7 @@ public:
 
 	int GetBulletsCount();
 
+	void DrawStats();
 private:
 	Vec2 rotation_point;
 	Vec2 projectile_spawn_point;
@@ -36,6 +37,10 @@ private:
 	Vec2 wheels_position;
 
 	float initial_velocity = 10.f;
-	float graivty = 10.f;
+	float gravity = 10.f;
 	float air_drag = 1.f;
+
+	// buffers for stats text
+	char time_buffer[100];
+	char distance_buffer[100];
 };
