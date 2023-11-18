@@ -9,7 +9,7 @@ Cannon::Cannon()
 {
 	CreateTexture("res/Cannon.png", &texture, size);
 	CreateTexture("res/Wheels.png", &wheels_texture, wheels_size);
-	position = { 50.f, GROUND_LEVEL - size.y * 2 };
+	position = { 50.f, GROUND_LEVEL - size.y / 2 };
 	rotation_point = { 0, size.y / 2 };
 	wheels_position = {position.x - 50, position.y + 30};
 }
@@ -18,8 +18,8 @@ Cannon::~Cannon() = default;
 
 void Cannon::Draw()
 {
-	DrawObject(texture, size, position, -rotation, rotation_point);
 	DrawObject(wheels_texture, wheels_size, wheels_position);
+	DrawObject(texture, size, position, -rotation, rotation_point);
 }
 
 void Cannon::DrawProjectiles()
@@ -86,4 +86,9 @@ int Cannon::GetGravity()
 int Cannon::GetAirDrag()
 {
 	return (int)air_drag;
+}
+
+int Cannon::GetBulletsCount()
+{
+	return Bullets.size();
 }

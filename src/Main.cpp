@@ -7,6 +7,8 @@
 #include <SDL_ttf.h>
 #include "AssetManager\AssetManager.h"
 #include "Button/Button.h"
+#include "Globals.h"
+
 
 void DrawControls(const char* title, Vec2&& title_pos, int value, Vec2&& value_pos, char* buffer)
 {
@@ -62,6 +64,7 @@ int main(int argc, char* args[])
 	char gravity_buffer[4];
 	char air_drag_buffer[4];
 
+	bool should_fire_only_one = true;
 
 	bool quit = false;
 	SDL_Event event;
@@ -77,7 +80,16 @@ int main(int argc, char* args[])
 				if (event.type == SDL_QUIT)
 					quit = true;
 				if (event.type == SDL_KEYDOWN && event.key.repeat == 0 && event.key.keysym.sym == SDLK_SPACE)
-					Player->Shoot();
+				{
+					if (!should_fire_only_one)
+						Player->Shoot();
+					else if(Player->GetBulletsCount() < 1)
+						Player->Shoot();
+				}
+				if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_m)
+				{
+					should_fire_only_one = !should_fire_only_one;
+				}
 				for (Button* btn : buttons)
 				{
 					btn->HandleInput(event);
@@ -91,11 +103,18 @@ int main(int argc, char* args[])
 			Player->DrawProjectiles();
 
 			QueueText("Press space to fire", { 500, 530 }, { 150, 150, 150 });
+			QueueText(should_fire_only_one ? "Mode: ONE" : "Mode: MANY", {SCREEN_WIDTH - 140, 20}, {150, 150, 150});
+			QueueText("Press M to change mode", { SCREEN_WIDTH - 300, 50 }, { 150, 150, 150 });
 
 			DrawControls("Rotation", { 98, 585 }, Player->GetRotation(), { 137, 629 }, rotation_buffer);
 			DrawControls("Initial Speed", { 365, 585 }, Player->GetVelocity(), { 137 + 300, 629 }, velocity_buffer);
 			DrawControls("Gravity", { 98 + 300 * 2, 585 }, Player->GetGravity(), { 137 + 300 * 2, 629 }, gravity_buffer);
 			DrawControls("Air Drag", { 98 + 300 * 3, 585 }, Player->GetAirDrag(), { 137 + 300 * 3, 629 }, air_drag_buffer);
+
+			if (should_fire_only_one)
+			{
+				// DRAW STATS
+			}
 
 			for (Button* btn : buttons)
 			{

@@ -35,15 +35,17 @@ void Projectile::Draw()
 void Projectile::Move(float dt)
 {
 	// calculate time spend in air
-	static float time = 0;
-	if(position.y < GROUND_LEVEL)
-		time = (2 * velocity.y * sin(angle)) / gravity.y;
+	static float time = 0.f;
+	static float distance = 0.f;
+	if (position.y < GROUND_LEVEL)
+	{
+		time = (2 * initial_velocity * sin(angle)) / gravity.y;
+		distance = (initial_velocity * initial_velocity * sin(2 * angle)) / gravity.y;
+	}
 
 	printf("time: %f\n", -time);
-
-
-	//auto b = (const char*)&time;
-	//auto b = (const char*)&time;
+	//printf("distance: %f\n", -distance);
+	
 
 	// apply forces
 	velocity.y += gravity.y * dt;

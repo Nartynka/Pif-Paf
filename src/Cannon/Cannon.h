@@ -23,6 +23,8 @@ public:
 	int GetGravity();
 	int GetAirDrag();
 
+	int GetBulletsCount();
+
 private:
 	Vec2 rotation_point;
 	Vec2 projectile_spawn_point;
