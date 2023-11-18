@@ -54,7 +54,7 @@ void Projectile::Move(float dt)
 
 bool Projectile::CheckScreenBounds()
 {
-	if (position.x + size.x < 0 || position.x > SCREEN_WIDTH || position.y < 0 || position.y > SCREEN_HEIGHT)
+	if (position.x + size.x < 0 || position.x > SCREEN_WIDTH || position.y < 0 || position.y > GROUND_LEVEL)
 	{
 		return true;
 	}
