@@ -8,7 +8,7 @@
 Cannon::Cannon()
 {
 	CreateTexture("res/Cannon.png", &texture, size);
-	position = { 70.f, GROUND_LEVEL - size.y / 3 };
+	position = { 50.f, GROUND_LEVEL - size.y * 2 };
 	rotation_point = { 0, size.y / 2 };
 }
 
@@ -44,7 +44,7 @@ void Cannon::MoveProjectiles(float dt)
 
 void Cannon::Shoot()
 {
-	projectile_spawn_point = { position.x + rotation_point.x + size.x - rotation * 2.f, position.y + rotation_point.y - rotation * 2.f};
+	projectile_spawn_point = { position.x + rotation_point.x + size.x - rotation * 1.5f, position.y + rotation_point.y - rotation};
 	Bullets.push_back(new Projectile(projectile_spawn_point, 10, initial_velocity, graivty, air_drag, rotation));
 }
 

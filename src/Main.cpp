@@ -92,8 +92,10 @@ int main(int argc, char* args[])
 			Player->Draw();
 			Player->DrawProjectiles();
 
+			QueueText("Press space to fire", { 500, 530 }, { 150, 150, 150 });
+
 			DrawControls("Rotation", { 98, 585 }, Player->GetRotation(), { 137, 629 }, rotation_buffer);
-			DrawControls("Initial velocity", { 345, 585 }, Player->GetVelocity(), { 137 + 300, 629 }, velocity_buffer);
+			DrawControls("Initial Speed", { 365, 585 }, Player->GetVelocity(), { 137 + 300, 629 }, velocity_buffer);
 			DrawControls("Gravity", { 98 + 300 * 2, 585 }, Player->GetGravity(), { 137 + 300 * 2, 629 }, gravity_buffer);
 			DrawControls("Air Drag", { 98 + 300 * 3, 585 }, Player->GetAirDrag(), { 137 + 300 * 3, 629 }, air_drag_buffer);
 
