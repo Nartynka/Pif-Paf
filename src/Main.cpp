@@ -12,9 +12,9 @@
 void DrawButtons(const char* title, Vec2&& title_pos, int value, Vec2&& value_pos)
 {
 	static char buffer[20];
-	QueueText(title, (Vec2&&)title_pos);
+	QueueText(title, (Vec2&&)title_pos, { 200, 200, 200 });
 	sprintf_s(buffer, "%d", value);
-	QueueText(buffer, (Vec2&&)value_pos);
+	QueueText(buffer, (Vec2&&)value_pos, { 200, 200, 200 });
 }
 
 int main(int argc, char* args[])
@@ -34,8 +34,8 @@ int main(int argc, char* args[])
 
 	Cannon* Player = new Cannon();
 
-	Button* rotation_lt_btn = new Button({ 50, 50 }, { 300, 400 }, "<", [Player](float a) { Player->IncreaseRotation(a); }, -5);
-	Button* rotation_gt_btn = new Button({ 50, 50 }, { 420, 400 }, ">", [Player](float a) { Player->IncreaseRotation(a); }, 5);
+	Button* rotation_lt_btn = new Button({ 50, 50 }, { 80, 620 }, "<", [Player](float a) { Player->IncreaseRotation(a); }, -5);
+	Button* rotation_gt_btn = new Button({ 50, 50 }, { 200, 620 }, ">", [Player](float a) { Player->IncreaseRotation(a); }, 5);
 
 	std::vector<Button*> buttons;
 	buttons.push_back(rotation_lt_btn);
@@ -70,7 +70,7 @@ int main(int argc, char* args[])
 
 			Player->MoveProjectiles(dt);
 		
-			DrawButtons("Rotation (in °)", { 500, 100 }, Player->GetRotation(), { 500, 150 });
+			DrawButtons("Rotation (in °)", { 70, 580 }, Player->GetRotation(), { 155, 630 });
 
 			Player->Draw();
 			Player->DrawProjectiles();
